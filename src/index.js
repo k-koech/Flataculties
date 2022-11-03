@@ -2,6 +2,21 @@
 
 
 const BASE_URL = "https://flataculties.herokuapp.com/characters";
+// // 1. See all characters names in a `div` with the id of `"character-bar"`. Create
+// // a `span` tag with the character's name and add it the `div#character-bar`
+// // once you have retrieved the character data from the server. You will need to
+// // make a GET request to the following endpoint to retrieve the character data:
+// //const BASE_URL = "http://localhost:3000/characters"
+
+//////////////////////////////////////////////////////////////////////
+//                  HAVE JSON SERVER RUNNING FIRST!                 //
+/////////////////                                    /////////////////
+//  https://codesandbox.io/s/flatacuties-code-challenge-json-zpdu6  //
+//    BACKUP: https://codesandbox.io/s/1pxhw?file=/src/api.json     //
+//             Change BASE_URL if you use the backup                //
+//////////////////////////////////////////////////////////////////////
+
+//LAST UPDATE 8/23/2021 in README
 
 const characterBar = document.getElementById("character-bar");
 const voteForm = document.getElementById("votes-form");
@@ -16,7 +31,7 @@ const filterBtnContainer = document.getElementById("filterBtnContainer");
 let featuredCharacter;
 let clientSideRealtimeData;
 //I try using a foreach loop to create listBtns and make them variables pushed into toggleBtnsArray. Which are accessible by the global scope
-const toggleBtnsToCreates = [
+const toggleBtnsToCreate = [
   "votesFeaturedToggleBtn",
   "addFeaturedToggleBtn",
   "releaseFeaturedToggleBtn",
@@ -112,23 +127,32 @@ function displayClickedChar(data) {
 //    persistence is needed**.
 
 function addVotes(event) {
-  event.preventDefault();
-  let voteInput = document.getElementById("votes").value;
-  voteInput === ""
-    ? (voteInput = 1)
-    : (voteInput = document.getElementById("votes").value);
-  let initialVotesCount = parseInt(detailBoxVotes.textContent, 0);
-  let newVoteCount = initialVotesCount + parseInt(voteInput, 0);
-  detailBoxVotes.textContent = newVoteCount;
-  let updateData = {
-    id: `${featuredCharacter.id}`,
-    votes: `${newVoteCount}`
-  };
-  //update clicked votes without refresh because it's using old data
-  updateVotesToDB(updateData);
-  updateHeaderDataAfterVotesChange(newVoteCount);
-  event.target.reset();
-}
+    event.preventDefault();
+    let voteInput = document.getElementById("votes").value;
+    voteInput === ""
+      ? (voteInput = 1)
+      : (voteInput = document.getElementById("votes").value);
+    
+    var initialVotesCount = 0;
+    console.log("Initial ",initialVotesCount)
+    if(detailBoxVotes.textContent=="NaN" || detailBoxVotes.textContent===null){
+      initialVotesCount = 0
+    }
+    else{
+      initialVotesCount = parseInt(detailBoxVotes.textContent, 0);
+    }
+    let newVoteCount = initialVotesCount + parseInt(voteInput, 0);
+  
+    detailBoxVotes.textContent = newVoteCount;
+    let updateData = {
+      id: `${featuredCharacter.id}`,
+      votes: `${newVoteCount}`
+    };
+    //update clicked votes without refresh because it's using old data
+    updateVotesToDB(updateData);
+    updateHeaderDataAfterVotesChange(newVoteCount);
+    event.target.reset();
+  }
 
 function updateHeaderDataAfterVotesChange(newVoteCount) {
   return (featuredCharacter.votes = newVoteCount);
@@ -557,9 +581,3 @@ function floatMatchingIDsLeft(filterIDFromIndex) {
     floatCharacterLeftArray.push(floatCharacterLeft);
   });
 }
-
-
-
-
-
-
