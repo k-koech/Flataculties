@@ -31,12 +31,12 @@ const filterBtnContainer = document.getElementById("filterBtnContainer");
 let featuredCharacter;
 let clientSideRealtimeData;
 //I try using a foreach loop to create listBtns and make them variables pushed into toggleBtnsArray. Which are accessible by the global scope
-const toggleBtnsToCreate = [
-  "votesFeaturedToggleBtn",
-  "addFeaturedToggleBtn",
-  "releaseFeaturedToggleBtn",
-  "editFeaturedToggleBtn"
-];
+// const toggleBtnsToCreate = [
+//   "votesFeaturedToggleBtn",
+//   "addFeaturedToggleBtn",
+//   "releaseFeaturedToggleBtn",
+//   "editFeaturedToggleBtn"
+// ];
 let toggleBtnsArray = [];
 const toggleBtnContainer = document.createElement("DIV");
 toggleBtnContainer.id = "toggleBtnContainer";
