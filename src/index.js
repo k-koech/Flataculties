@@ -37,9 +37,10 @@ let clientSideRealtimeData;
 //   "releaseFeaturedToggleBtn",
 //   "editFeaturedToggleBtn"
 // ];
+
 let toggleBtnsArray = [];
 const toggleBtnContainer = document.createElement("DIV");
-toggleBtnContainer.id = "toggleBtnContainer";
+// toggleBtnContainer.id = "toggleBtnContainer";
 toggleBtnContainer.style = "position: fixed; top: 30%; left: 75vw; width: 0vw;";
 const oLToggleBtns = document.createElement("OL");
 document.body.append(toggleBtnContainer);
